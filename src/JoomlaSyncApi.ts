@@ -15,7 +15,7 @@ export class JoomlaSyncApi {
     private restApi: IHttpApi,
     loggerFactory: LoggerFactory
   ) {
-    this.logger = loggerFactory.CreateLogger('MySqlSyncProvider');
+    this.logger = loggerFactory.CreateLogger('JoomlaSyncApi');
     this.logger.info('constructor()');
     this.deviceId = joomlaSettings.DeviceId;
   }

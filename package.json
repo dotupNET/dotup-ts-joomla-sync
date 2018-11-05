@@ -1,6 +1,6 @@
 {
   "name": "dotup-ts-joomla-sync",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "TypeScript library to sync Joomla API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
