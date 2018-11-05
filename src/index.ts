@@ -1,5 +1,5 @@
 export * from './JoomlaSyncApi';
-
+export * from './IHttpApi'
 export * from './models/ApiException';
 export * from './models/ClientSyncState';
 export * from './models/Enums';
