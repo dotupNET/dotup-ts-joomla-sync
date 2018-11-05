@@ -1,7 +1,7 @@
 {
-  "name": "dotup-ts-library-template",
-  "version": "0.0.15",
-  "description": "template for typescript libraries",
+  "name": "dotup-ts-joomla-sync",
+  "version": "0.0.1",
+  "description": "TypeScript library to sync Joomla API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dotupNET/dotup-ts-library-template.git"
+    "url": "git+https://github.com/dotupNET/dotup-ts-joomla-sync.git"
   },
   "keywords": [
     "typescript",
@@ -28,9 +28,9 @@
   "author": "Peter Ullrich",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dotupNET/dotup-ts-library-template/issues"
+    "url": "https://github.com/dotupNET/dotup-ts-joomla-sync/issues"
   },
-  "homepage": "https://github.com/dotupNET/dotup-ts-library-template#readme",
+  "homepage": "https://github.com/dotupNET/dotup-ts-joomla-sync#readme",
   "devDependencies": {
     "@types/jest": "^23.3.8",
     "gh-pages": "^2.0.1",
@@ -39,5 +39,8 @@
     "ts-node": "^7.0.1",
     "typedoc": "^0.13.0",
     "typescript": "^3.1.3"
+  },
+  "dependencies": {
+    "dotup-ts-logger": "0.0.5"
   }
 }
