@@ -5,6 +5,7 @@ import { SyncPullRequest } from './models/SyncPullRequest';
 import { ILogger, LoggerFactory } from "dotup-ts-logger";
 import { JoomlaSettings } from './models/JoomlaSettings';
 import { RestResult } from './models/RestResult';
+import { JoomlaUser } from './models/JoomlaUser';
 
 export class JoomlaLogin {
   private deviceId: string = '';
@@ -20,11 +21,11 @@ export class JoomlaLogin {
   }
 
 
-  public async Login(user: string, pass: string) {
+  public async Login(user: string, pass: string) : Promise<JoomlaUser> {
     let url = this.getServerUrl('login');
     this.logger.debug(url, 'login');
-    var result = await this.restApi.post(url, { username: user, password: pass });
-    return result;
+    var result = await this.restApi.post<RestResult<JoomlaUser>>(url, { username: user, password: pass });
+    return result.data;
   }
 
   private getServerUrl(api: string) {

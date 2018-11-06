@@ -10,3 +10,4 @@ export * from './models/SyncPullResponse';
 export * from './models/TableToSync';
 export * from './models/TableToSyncRequest';
 export * from './JoomlaLogin';
+export * from './models/JoomlaUser';
