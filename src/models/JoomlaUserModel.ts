@@ -1,4 +1,4 @@
-export class JoomlaUser {
+export class JoomlaUserModel {
   status: number;
   type: string;
   error_message: string;

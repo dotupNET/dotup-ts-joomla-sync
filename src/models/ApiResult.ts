@@ -1,4 +1,4 @@
-export class RestResult<T>{
+export class ApiResult<T>{
 	err_msg: string;
   err_code: string;
   response_id: string;

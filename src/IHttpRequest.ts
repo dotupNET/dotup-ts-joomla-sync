@@ -1,4 +1,4 @@
-export interface IHttpApi {
+export interface IHttpRequest {
 	get<T>(url: string): Promise<T>;
 	post<T>(url: string, data?: any): Promise<T>;
 	delete<T>(url: string, data: any): Promise<T>;

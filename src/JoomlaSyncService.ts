@@ -1,36 +1,34 @@
 import { SyncPullResponse } from './models/SyncPullResponse';
 import { TableToSyncRequest } from './models/TableToSyncRequest';
-import { IHttpApi } from './IHttpApi';
+import { IHttpRequest } from './IHttpRequest';
 import { SyncPullRequest } from './models/SyncPullRequest';
 import { ILogger, LoggerFactory } from "dotup-ts-logger";
 import { JoomlaSettings } from './models/JoomlaSettings';
-import { RestResult } from './models/RestResult';
+import { ApiResult } from './models/ApiResult';
 
-export class JoomlaSyncApi {
-  private deviceId: string = '';
+export class JoomlaSyncService {
   private logger: ILogger;
 
   constructor(
     private joomlaSettings: JoomlaSettings,
-    private restApi: IHttpApi,
+    private restApi: IHttpRequest,
     loggerFactory: LoggerFactory
   ) {
-    this.logger = loggerFactory.CreateLogger('JoomlaSyncApi');
+    this.logger = loggerFactory.CreateLogger('JoomlaSyncService');
     this.logger.info('constructor()');
-    this.deviceId = joomlaSettings.DeviceId;
   }
 
-  public async GetTablesToSync(): Promise<RestResult<TableToSyncRequest>> {
-    let url = this.getServerUrl('GetTablesToSync') + '&device=' + this.deviceId;
+  public async GetTablesToSync(deviceId: string): Promise<ApiResult<TableToSyncRequest>> {
+    let url = this.getServerUrl('GetTablesToSync') + '&device=' + deviceId;
     this.logger.debug(url, 'GetTablesToSync');
-    let result = await this.restApi.get<RestResult<TableToSyncRequest>>(url);
+    let result = await this.restApi.get<ApiResult<TableToSyncRequest>>(url);
     return result;
   }
 
-  public async SyncPullRequest<T>(tableName: string): Promise<RestResult<SyncPullRequest<T>>> {
-    let url = this.getServerUrl('SyncPullRequest') + '&device=' + this.deviceId + '&table=' + tableName;
+  public async SyncPullRequest<T>(tableName: string, deviceId: string): Promise<ApiResult<SyncPullRequest<T>>> {
+    let url = this.getServerUrl('SyncPullRequest') + '&device=' + deviceId + '&table=' + tableName;
     this.logger.debug(url, 'SyncPullRequest');
-    var result = await this.restApi.get<RestResult<SyncPullRequest<T>>>(url);
+    var result = await this.restApi.get<ApiResult<SyncPullRequest<T>>>(url);
     return result;
   }
 
@@ -41,16 +39,16 @@ export class JoomlaSyncApi {
     return result;
   }
 
-  public async ResetClientState() {
-    let url = this.getServerUrl('ResetClientState') + '&device=' + this.deviceId;
+  public async ResetClientState(deviceId: string) {
+    let url = this.getServerUrl('ResetClientState') + '&device=' + deviceId;
     this.logger.debug(url, 'ResetClientState');
-    var result = await this.restApi.post<RestResult<any>>(url);
+    var result = await this.restApi.post<ApiResult<any>>(url);
     return result;
   }
   
   private getServerUrl(api: string) {
     let server = this.joomlaSettings.ServerUrl;
-    let app = this.joomlaSettings.App;
+    let app = this.joomlaSettings.AppName;
     let url = `${server}/index.php?option=com_api&app=${app}&resource=${api}`;
     return url;
   }
