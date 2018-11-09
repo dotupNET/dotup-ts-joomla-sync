@@ -8,14 +8,18 @@ import { ApiResult } from './models/ApiResult';
 
 export class JoomlaSyncService {
   private logger: ILogger;
+  private joomlaSettings: JoomlaSettings;
 
   constructor(
-    private joomlaSettings: JoomlaSettings,
     private restApi: IHttpRequest,
     loggerFactory: LoggerFactory
   ) {
     this.logger = loggerFactory.CreateLogger('JoomlaSyncService');
     this.logger.info('constructor()');
+  }
+
+  SetJoomlaSettings(settings: JoomlaSettings){
+    this.joomlaSettings = settings;
   }
 
   public async GetTablesToSync(deviceId: string): Promise<ApiResult<TableToSyncRequest>> {
