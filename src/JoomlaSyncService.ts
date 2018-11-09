@@ -18,7 +18,7 @@ export class JoomlaSyncService {
     this.logger.info('constructor()');
   }
 
-  SetJoomlaSettings(settings: JoomlaSettings){
+  Initialize(settings: JoomlaSettings){
     this.joomlaSettings = settings;
   }
 
